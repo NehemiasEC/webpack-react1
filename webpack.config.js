@@ -7,16 +7,17 @@
 
 var webpack = require("webpack");
 var path = require("path");
+var htmlWebpackPlugin = require("html-webpack-plugin");
 
 var BUILD_DIR = path.join(__dirname,'dist');
 
 var APP_DIR = path.join(__dirname,'src');
 
 var config ={
-    entry:APP_DIR + '/app.js',
+    entry:APP_DIR + '/index.js',
     output:{
         path:BUILD_DIR,
-        filename:'app.bundle.js'
+        filename:'bundle.js'
     },
     module:{
         rules:[
@@ -40,7 +41,12 @@ var config ={
             }
 
         ]
-    }
+    },
+    plugins:[
+        new htmlWebpackPlugin({
+            template:'index.html'
+        })
+    ]
 };
 
 module.exports = config;
